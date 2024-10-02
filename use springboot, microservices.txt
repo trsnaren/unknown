@@ -1,0 +1,424 @@
+use springboot, microservices 
+create issue tracking system where you have user management
+1.Descripton:Allows creation of a new user with details including name,email,password,profile image and role
+inputs:name,email,passwod,profileimage,role
+outputs:confirmation of user creation with message "Your account is created successfully" with hyper link to login
+process:Validates input and adds a new user to the database
+Login:
+the login screen is common entry point for both project owners and assignees.It includes the followimg fields:
+Name
+email
+Password
+profile Image(optional)
+role (Project owner or assignee)
+upon successful login,users are redirected to their respective dashboards based on their role
+Dashboard
+The dashboard provides a summary of the relevant information for each user role.
+Project owner module
+the project owner module includes functionalities for project and issue management :dashboard overview,poject creation,management,issue creation,management and assignment
+Assignee Module
+the assignee module includes functionalities for project and issue management :dashboard overview,
+viewing assigned issues ,updating issue status and adding comments for better communication.
+as of now i created a db called user
+so you have to create four micro services called project service:manages all project -related operations,issue service :handles issues within projects
+userservice:manages user information and roles
+comment service:Manages commebrs related to an issue
+. Create Project (Project Owner View)
+
+• Description: Allows creation of a new project with details such as project name, product owner, start date, and end date
+
+• Inputs: Project name, product owner ID, start date, and end date
+
+• Outputs: Confirmation of project creation, project ID
+
+
+• Process: Validates input and adds a new project to the database
+
+
+
+2. Retrieve Projects (Project Owner View)
+
+Description: Allows retrieval of all projects or a single project by ID
+
+• Inputs: Project ID
+
+• Outputs: List of projects or single project details
+
+• Process: Fetches project details from the database
+
+3. Create Issue (Project Owner View)
+
+Description: Allows creation of a new issue related to a project
+
+Inputs: Summary, project ID, description, priority, assignee ID, status, created date, last updated date, and comments
+
+Outputs: Confirmation of issue creation, issue ID
+
+Process: Validates input and adds a new issue to the database
+
+4. Issue Detail (Project Owner View/ Assignee View)
+
+Description: Allows retrieval of all issues, a single issue by ID, issues by project, or issues by user (assignee)
+
+Inputs: Issue ID or project ID or user ID
+
+• Outputs: List of issues or single-issue details
+
+• Process: Fetches issue details from the database based on the provided criteria
+
+I
+
+5. Retrieve Issues (Project Owner View)
+
+• Description: Allows retrieval of all issues, a single issue by ID, issues by project, or issues by user (assignee)
+
+Inputs: Issue ID or project ID or user ID
+
+• Outputs: List of issues or single-issue details
+
+• Process: Fetches issue details from the database based on the provided criteria
+6. Update Issue (Project Owner View)
+
+Description: Allows updating existing issue details
+
+• Inputs: Issue ID, fields to update such as status, assignee
+
+• Outputs: Updated issue details
+
+Process: Validates changes and updates the issue details in the database
+
+7. Add and Fetch Comments Related to an Issue (Project Owner View/ Assignee View)
+
+• Description: Allows adding and fetching comments
+
+Inputs: Issue ID For Fetching comments)
+
+Inputs: Issue ID, User ID, Comment Text (For adding comments)
+
+Outputs: Updated list of comments
+
+• Process: Validates changes and updates in the comments table in the database
+
+8. View Insights (Project Owner View)
+
+I
+
+• Description: Customizable dashboard views for users to monitor project and issue statuses, updates, and metrics
+
+• Inputs: User preferences
+• Outputs: Dashboard view
+
+Process: Retrieves and displays information based on user-configured settings and permissions
+
+Microservices Breakdown
+
+Project Service: Manages all project-related operations
+
+Issue Service: Handles issues within projects
+
+User Service: Manages user information and roles
+
+• Comment Service: Manages comments related to an issue
+
+API Specification
+
+(Link is also shared above with sample data in table format and sample endpoint outcomes)
+
+1. User Service Endpoints
+
+HTTP Method
+
+Endpoint
+
+I
+
+Description
+
+GET
+
+/api/users
+
+Retrieve a list of all users.
+
+POST
+
+/api/users
+
+Create a new user.
+
+POST
+
+/api/users/login
+
+Authenticate a user and log them in.
+
+GET
+
+/api/users/fuserld)
+
+Retrieve details of a specific user by user ID
+• Outputs: Dashboard view
+
+Process: Retrieves and displays information based on user-configured settings and permissions
+
+Microservices Breakdown
+
+Project Service: Manages all project-related operations
+
+Issue Service: Handles issues within projects
+
+User Service: Manages user information and roles
+
+• Comment Service: Manages comments related to an issue
+
+API Specification
+
+(Link is also shared above with sample data in table format and sample endpoint outcomes)
+
+1. User Service Endpoints
+
+HTTP Method
+
+Endpoint
+
+I
+
+Description
+
+GET
+
+/api/users
+
+Retrieve a list of all users.
+
+POST
+
+/api/users
+
+Create a new user.
+
+POST
+
+/api/users/login
+
+Authenticate a user and log them in.
+
+GET
+
+/api/users/fuserld)
+
+Retrieve details of a specific user by user ID
+
+GET
+
+/api/users/(userld)/issues
+
+Retrieve issues assigned to a specific user by user ID.-Inter service communication
+
+GET
+
+/api/users/username/{username}/issues
+
+Retrieve issues assigned to a specific user by username. - Inter service communication
+
+2. Project Service Endpoints
+
+HTTP Method
+
+Endpoint
+
+Description
+
+Retrieve details of a specific project by project ID.
+
+GET
+
+/api/projects/{projectId}
+
+PUT
+
+/api/projects/{projectid}
+
+Update details of a specific project by project ID.
+
+DELETE
+
+/api/projects/{projectid}
+
+Delete a specific project by project ID.
+
+GET
+
+/api/projects
+
+Retrieve a list of all projects.
+
+POST
+
+/api/projects
+
+I
+
+Create a new project.
+
+GET
+
+/api/projects/{projectId}/issues
+
+Retrieve issues within a specific project by project ID. - Inter service communication
+
+GET
+
+/api/projects/{projectId}/insights
+
+Retrieve insights for a specific project by project ID.
+
+/api/projects/projectName/{projectNa
+
+Retrieve issues within a specific project by project
+
+me)/ issues
+
+name. - Inter service communication
+GET
+
+/api/projects/owner/(ownerld)
+
+Retrieve projects owned by a specific user by owner ID.
+
+Share
+
+.
+
+6
+
+3. Issue Service Endpoints
+
+HTTP Method
+
+Endpoint
+
+Description
+
+GET
+
+/api/issues/(id)
+
+
+Retrieve details of a specific issue by issue ID.
+
+PUT
+
+/api/issues/{id}
+
+Update details of a specific issue by issue ID.
+
+GET
+
+/api/issues
+
+Retrieve a list of all issues.
+
+POST
+
+/api/issues
+
+Create a new issue.
+GET
+
+/api/issues/{issueld}/comments
+
+Retrieve comments for a specific issue by issue ID.. - Inter service communication
+
+POST
+
+/api/issues/{issueld}/comment
+
+Add a comment to a specific issue by issue ID. - Inter service communication
+
+GET
+
+/api/issues/project/{projectid)
+
+Retrieve issues within a specific project by project - Inter service communication ID.
+
+GET
+
+/api/issues/owner/{ownerld}
+
+Retrieve issues owned by a specific user by owner - Inter service communication ID.
+
+GET
+
+/api/issues/assignee/(assigneeld}
+
++4
+
+Retrieve issues assigned to a specific user by - Inter service communication assignee ID.
+
+4. Comment Service Endpoints
+
+HTTP Method
+
+Endpoint
+
+Description
+
+POST
+
+/api/comments
+
+Create a new comment.
+
+GET
+
+/api/comments/{issueld}
+
++4
+
+Retrieve comments for a specific issue by issue ID.
+
+Shar
+
+Database Structure
+
+Each service will manage its own database schema, reflecting the principles of microservices architecture to ensure loose coupling and high cohesion.
+user
+
+user_id INT, email VARCHAR(255), name VARCHAR(255), password VARCHAR(255), profile VARCHAR(255),role TINYINT
+
+
+project
+
+id INT,end_date DATE, project_name VARCHAR(25..., project_owner INT,start_date DATE
+
+,
+
+
+Issue- id INT,assignee INT, created_on DATE,description VARCHAR(25..., last_updated DATE, priority ENUM(...),project INT, status ENUM(...),summary VARCHAR(255),created_by INT,sprint VARCHAR(255),story_point INT,tags VARCHAR(255),type ENUM(...)
+
+
+Comment
+Id INT,created_date DATE, ,description VARCHAR(25..., issue id INT,user_id INT,user_name VARCHAR(255)
+
+
+
+
+
+Microservices Setup: Each microservice is set up as a separate Spring Boot application
+
+Service Discovery: Implement Eureka Server for dynamic service discovery
+
+• API Gateway: A single-entry point for all clients. Routes requests appropriate microservices, handles
+
+failures, and provides some API aggregation Inter-service Communication: Services communicate using REST APIs, facilitated by client-side load balancing with Ribbon or Feign
+
+Database Configuration: Each service interacts with its own MySQL database instance
+
+• Testing and Deployment: Each microservice is developed, tested, and deployed independently
+
+• Swagger: Each of the above services should have swagger documentation of all APIs
+
+
+user_id,id,id,id are the primary keys that are written in the springboot entity code itself 
+give codes according to the requirement ,mention the base package as com.deloitte and write the code in respective packages called entity,exception,repository,dto,controller,client(feign classes to be included here),service for each of the services
