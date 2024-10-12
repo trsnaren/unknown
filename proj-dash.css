@@ -1,0 +1,132 @@
+.project-dashboard {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .issue-columns {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .issue-column {
+    width: 24%;
+    background-color: #f5f5f5;
+    padding: 10px;
+    border-radius: 8px;
+  }
+  
+  .issue-card {
+    background-color: white;
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    border-radius: 5px;
+  }.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: orange;
+  }
+  
+  .search-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .search-bar {
+    width: 300px;
+    padding: 5px;
+    font-size: 1em;
+    margin-right: 10px;
+  }
+  
+  button {
+    padding: 5px 10px;
+    font-size: 1em;
+    cursor: pointer;
+  }
+  .filters
+  {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+  }
+  .issue-columns {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+  }
+  
+  .issue-column {
+    flex: 1;
+    margin: 10px;
+  }
+  
+  .issue-card {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    width: 100%; /* Adjusted to fill the column */
+  }
+  
+  .issue-header {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+  }
+  
+  .issue-content {
+    margin: 5px 0;
+  }
+  
+  .issue-summary {
+    font-size: 16px; /* Normal font size */
+  }
+  
+  .issue-description {
+    font-size: 14px; /* Normal font size */
+  }
+  
+  .issue-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .assignee {
+    display: flex;
+    align-items: center;
+  }
+  
+  .assignee-image {
+    width: 20px; /* Adjust size as needed */
+    height: 20px; /* Adjust size as needed */
+    border-radius: 50%;
+    margin-right: 5px;
+  }
+  
+  .assignee-name {
+    font-weight: bold; /* Highlighted name */
+  }
+  
+  .issue-priority {
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: white; /* White text for better contrast */
+  }
+  
+  .high-priority {
+    background-color: red; /* Color for high priority */
+  }
+  
+  .medium-priority {
+    background-color: yellow; /* Color for medium priority */
+    color: black; /* Black text for better contrast */
+  }
+  
+  .low-priority {
+    background-color: green; /* Color for low priority */
+  }
+  
