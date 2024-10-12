@@ -1,0 +1,76 @@
+<!-- project-dashboard.component.html -->
+<div class="project-dashboard">
+    <header class="header">
+        <div class="search-container">
+          <input type="text" class="search-bar" placeholder="Search issues" [(ngModel)]="searchTerm">
+          <button (click)="onSearch()">Search</button>
+        </div>
+        <h1 class="title">Issue Tracking System</h1>
+      </header>
+      
+      
+  
+    <main>
+      <h2>Project Dashboard</h2>
+      <div class="project-selection">
+        <select (change)="onProjectChange($event)">
+          <option *ngFor="let project of projects" [value]="project.projectName">
+            {{project.projectName}}
+          </option>
+        </select>
+      </div>
+  
+      <div class="project-details" *ngIf="selectedProject">
+        <p>Project Owner: {{selectedProject.projectOwner}}</p>
+        <p>Start Date: {{selectedProject.startDate | date:'dd-MM-yyyy'}}</p>
+        <p>End Date: {{selectedProject.endDate | date:'dd-MM-yyyy'}}</p>
+      </div>
+  
+      <div class="filters">
+        <div>
+            <label>Filter By Assignee</label>
+            <input type="text" placeholder="Filter by Assignee" (input)="onAssigneeFilterChange($event)">
+        </div>
+       
+        <div>
+            <label>Flter By Priority</label>
+        <select (change)="onPriorityFilterChange($event)">
+          <option value="">All Priorities</option>
+          <option value="LOW">Low</option>
+          <option value="MEDIUM">Medium</option>
+          <option value="HIGH">High</option>
+        </select>
+        </div>
+        
+        
+      </div>
+  
+      <div class="issue-columns">
+        <div *ngFor="let status of statusColumns" class="issue-column">
+          <h3>{{status}}</h3>
+          <div *ngFor="let issue of getIssuesByStatus(status)" class="issue-card">
+            <div class="issue-header">
+              <span class="issue-id">Id: {{issue.id}}</span>
+              <span class="issue-date">{{issue.createdOn | date: 'dd-MM-yyyy'}}</span>
+            </div>
+            
+            <div class="issue-content">
+              <div class="issue-summary">{{issue.summary}}</div>
+              <div class="issue-description">{{issue.description}}</div>
+            </div>
+            
+            <div class="issue-footer">
+              <div class="assignee">
+                <img src="assignee-image.jpg" alt="Assignee" class="assignee-image">
+                <span class="assignee-name">{{issue.assignee}}</span>
+              </div>
+              <div class="issue-priority" [ngClass]="{'high-priority': issue.priority === 'HIGH', 'medium-priority': issue.priority === 'MEDIUM', 'low-priority': issue.priority === 'LOW'}">
+                {{issue.priority}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </main>
+  </div>
